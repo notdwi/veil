@@ -1,0 +1,8 @@
+# Normalise to LF in the repository. Linux runners and the Arch PKGBUILD break
+# on CRLF, and Windows tooling handles LF fine.
+* text=auto eol=lf
+
+*.png binary
+*.ico binary
+*.woff binary
+*.woff2 binary
