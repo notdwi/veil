@@ -1,0 +1,109 @@
+/* CodeMirror is re-skinned rather than themed via JS so the editor inherits
+   the same tokens as the rest of the shell. */
+/* The wrapper chain must carry a bounded height or .cm-scroller never becomes
+   the scroll container and long bodies simply overflow the panel. */
+.veil-editor,
+.veil-editor > div {
+  height: 100%;
+  min-height: 0;
+}
+
+.veil-editor .cm-editor {
+  height: 100%;
+  max-height: 100%;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+.veil-editor .cm-editor.cm-focused {
+  outline: none;
+}
+
+.veil-editor .cm-scroller {
+  font-family: inherit;
+  overflow: auto;
+  padding: 10px 0 28px;
+}
+
+.veil-editor .cm-content {
+  caret-color: var(--color-crimson-hot);
+  padding: 0;
+}
+
+.veil-editor .cm-gutters {
+  background: transparent;
+  border-right: 1px solid var(--color-hairline);
+  color: var(--color-bone-4);
+  padding-right: 4px;
+  user-select: none;
+}
+
+.veil-editor .cm-lineNumbers .cm-gutterElement {
+  padding: 0 10px 0 14px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+
+.veil-editor .cm-activeLineGutter {
+  background: transparent;
+  color: var(--color-crimson-hot);
+}
+
+.veil-editor .cm-activeLine {
+  background: rgb(255 34 51 / 0.045);
+}
+
+.veil-editor .cm-selectionBackground,
+.veil-editor .cm-content ::selection {
+  background: rgb(224 16 31 / 0.32) !important;
+}
+
+.veil-editor .cm-cursor {
+  border-left: 2px solid var(--color-crimson-hot);
+}
+
+.veil-editor .cm-matchingBracket {
+  background: rgb(36 227 176 / 0.16);
+  outline: 1px solid rgb(36 227 176 / 0.4);
+  color: inherit !important;
+}
+
+.veil-editor .cm-searchMatch {
+  background: rgb(255 193 46 / 0.24);
+  outline: 1px solid rgb(255 193 46 / 0.5);
+}
+.veil-editor .cm-searchMatch-selected {
+  background: rgb(224 16 31 / 0.4);
+}
+
+.veil-editor .cm-panels {
+  background: var(--color-ink-3);
+  border-top: 1px solid var(--color-hairline);
+  color: var(--color-bone-2);
+  font-family: var(--font-sans);
+}
+.veil-editor .cm-panel input,
+.veil-editor .cm-panel button {
+  background: var(--color-ink);
+  border: 1px solid var(--color-hairline);
+  color: var(--color-bone);
+  padding: 3px 7px;
+  font-size: 11px;
+}
+.veil-editor .cm-panel button:hover {
+  border-color: var(--color-crimson);
+}
+
+.veil-editor .cm-foldPlaceholder {
+  background: var(--color-ink-4);
+  border: none;
+  color: var(--color-bone-3);
+  padding: 0 6px;
+}
+
+.veil-editor .cm-tooltip {
+  background: var(--color-ink-3);
+  border: 1px solid var(--color-hairline);
+}

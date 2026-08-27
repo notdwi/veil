@@ -1,0 +1,114 @@
+/* Reusable geometry + texture. The slant and the notch live here so no
+   component has to reinvent them. */
+
+@utility clip-nick {
+  clip-path: polygon(
+    var(--nick) 0,
+    100% 0,
+    100% calc(100% - var(--nick)),
+    calc(100% - var(--nick)) 100%,
+    0 100%,
+    0 var(--nick)
+  );
+}
+
+@utility clip-nick-tr {
+  clip-path: polygon(0 0, calc(100% - var(--nick)) 0, 100% var(--nick), 100% 100%, 0 100%);
+}
+
+@utility clip-nick-bl {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, var(--nick) 100%, 0 calc(100% - var(--nick)));
+}
+
+@utility clip-blade {
+  clip-path: polygon(0 0, 100% 0, calc(100% - var(--nick-lg)) 100%, 0 100%);
+}
+
+@utility clip-blade-l {
+  clip-path: polygon(var(--nick-lg) 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* The pointed cut-out tag used for section labels. */
+@utility clip-tag {
+  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 50%, 100% 100%, 0 100%, 0 0);
+}
+
+@utility clip-shard {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 22px), calc(100% - 26px) 100%, 0 100%);
+}
+
+@utility skew-bar {
+  transform: skewX(var(--skew-deg));
+}
+
+@utility unskew {
+  transform: skewX(calc(var(--skew-deg) * -1));
+}
+
+/* --- typography roles --- */
+
+@utility type-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.86;
+}
+
+@utility type-label {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 10px;
+  line-height: 1;
+}
+
+@utility type-mono {
+  font-family: var(--font-mono);
+  font-variant-ligatures: none;
+  font-size: 12.5px;
+}
+
+/* --- textures: low opacity, always behind content --- */
+
+@utility halftone {
+  background-image: radial-gradient(currentColor 1px, transparent 1.2px);
+  background-size: 6px 6px;
+}
+
+@utility halftone-lg {
+  background-image: radial-gradient(currentColor 1.6px, transparent 1.9px);
+  background-size: 11px 11px;
+}
+
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    currentColor 0 1px,
+    transparent 1px 7px
+  );
+}
+
+@utility grain {
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgb(255 255 255 / 0.014) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+/* --- rules --- */
+
+@utility rule-x {
+  background: linear-gradient(
+    90deg,
+    var(--color-hairline) 0%,
+    var(--color-hairline) 70%,
+    transparent 100%
+  );
+}
+
+@utility scrim {
+  background: linear-gradient(180deg, rgb(8 7 10 / 0) 0%, rgb(8 7 10 / 0.9) 100%);
+}

@@ -1,0 +1,139 @@
+/* All entrances are diagonal, short, and end hard. Nothing eases out slowly. */
+
+@keyframes slash-in {
+  from {
+    opacity: 0;
+    transform: translate3d(-14px, 6px, 0) skewX(-14deg);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) skewX(0deg);
+  }
+}
+
+@keyframes wipe-in {
+  from {
+    clip-path: polygon(0 0, 0 0, -12% 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 140% 0, 140% 100%, 0 100%);
+  }
+}
+
+@keyframes drop-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -10px, 0) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) skewX(-6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes strike {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+@keyframes sweep {
+  0% {
+    transform: translateX(-110%) skewX(var(--skew-deg));
+  }
+  100% {
+    transform: translateX(320%) skewX(var(--skew-deg));
+  }
+}
+
+@keyframes tick-blink {
+  0%,
+  70% {
+    opacity: 1;
+  }
+  71%,
+  100% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes jitter {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  25% {
+    transform: translate3d(-1px, 1px, 0);
+  }
+  75% {
+    transform: translate3d(1px, -1px, 0);
+  }
+}
+
+@utility anim-slash {
+  animation: slash-in var(--t-base) var(--ease-snap) both;
+}
+
+@utility anim-wipe {
+  animation: wipe-in var(--t-base) var(--ease-cut) both;
+}
+
+@utility anim-drop {
+  animation: drop-in var(--t-fast) var(--ease-snap) both;
+}
+
+@utility anim-pop {
+  animation: pop-in var(--t-fast) var(--ease-snap) both;
+}
+
+@utility anim-strike {
+  animation: strike var(--t-fast) var(--ease-cut) both;
+}
+
+@utility anim-sweep {
+  animation: sweep 900ms var(--ease-cut) infinite;
+}
+
+@utility anim-jitter {
+  animation: jitter 120ms steps(2) 3;
+}
+
+/* Stagger children of a list without per-item inline styles. */
+@utility stagger {
+  & > * {
+    animation: slash-in var(--t-fast) var(--ease-snap) both;
+  }
+  & > *:nth-child(1) { animation-delay: 0ms; }
+  & > *:nth-child(2) { animation-delay: 18ms; }
+  & > *:nth-child(3) { animation-delay: 36ms; }
+  & > *:nth-child(4) { animation-delay: 54ms; }
+  & > *:nth-child(5) { animation-delay: 72ms; }
+  & > *:nth-child(6) { animation-delay: 90ms; }
+  & > *:nth-child(n + 7) { animation-delay: 108ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

@@ -1,0 +1,57 @@
+/* VEIL design tokens. Everything visual derives from this file. */
+@theme {
+  /* --- surfaces: large fields of near-black, never pure grey --- */
+  --color-ink: #08070a;
+  --color-ink-2: #0d0c11;
+  --color-ink-3: #141319;
+  --color-ink-4: #1e1c24;
+  --color-hairline: #2a2731;
+
+  /* --- paper: warm white, the "cut-out tag" colour --- */
+  --color-bone: #f2efe6;
+  --color-bone-2: #cfcabd;
+  --color-bone-3: #8e897d;
+  --color-bone-4: #5c584f;
+
+  /* --- crimson: reserved for action and identity --- */
+  --color-crimson: #e0101f;
+  --color-crimson-hot: #ff2233;
+  --color-crimson-deep: #8c0812;
+  --color-crimson-ghost: #2a070b;
+
+  /* --- state accents: used sparingly, never decoratively --- */
+  --color-jade: #24e3b0;
+  --color-amber: #ffc12e;
+  --color-magenta: #ff3d9a;
+  --color-azure: #4ea8ff;
+
+  /* --- method hues --- */
+  --color-m-get: #24e3b0;
+  --color-m-post: #ffc12e;
+  --color-m-put: #4ea8ff;
+  --color-m-patch: #c07cff;
+  --color-m-delete: #ff2233;
+  --color-m-head: #8e897d;
+  --color-m-options: #8e897d;
+
+  /* --- type --- */
+  --font-display: 'Anton', 'Arial Narrow', 'Haettenschweiler', sans-serif;
+  --font-sans: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Mono', 'Consolas', monospace;
+
+  /* --- geometry: the slant is a constant, not a per-component choice --- */
+  --skew-deg: -9deg;
+  --nick: 9px;
+  --nick-lg: 16px;
+
+  /* --- motion: fast or nothing --- */
+  --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cut: cubic-bezier(0.65, 0, 0.35, 1);
+  --t-tick: 90ms;
+  --t-fast: 140ms;
+  --t-base: 200ms;
+  --t-slow: 260ms;
+
+  --shadow-lift: 0 18px 40px -12px rgb(0 0 0 / 0.85);
+  --shadow-stamp: 0 0 0 1px var(--color-hairline);
+}
