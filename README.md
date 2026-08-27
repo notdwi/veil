@@ -7,7 +7,7 @@
 ### A stylish, lightweight API client for developers.
 
 <p>
-<img src="https://img.shields.io/badge/version-0.1.0-E0101F?style=flat-square&labelColor=08070A" alt="version" />
+<img src="https://img.shields.io/badge/version-0.1.1-E0101F?style=flat-square&labelColor=08070A" alt="version" />
 <img src="https://img.shields.io/badge/status-early%20access-E0101F?style=flat-square&labelColor=08070A" alt="status" />
 <img src="https://img.shields.io/badge/installer-3.8%20MB-E0101F?style=flat-square&labelColor=08070A" alt="size" />
 <img src="https://img.shields.io/badge/license-MIT-E0101F?style=flat-square&labelColor=08070A" alt="license" />
@@ -79,22 +79,22 @@ Download from [**Releases**](../../releases).
 
 | Platform          | File                                                     | Size    |
 | ----------------- | -------------------------------------------------------- | ------- |
-| Windows 10/11     | `VEIL_0.1.0_x64-setup.exe`                                | 3.7 MB  |
-| Windows 10/11     | `VEIL_0.1.0_x64_en-US.msi`                                | 4.4 MB  |
-| Debian · Ubuntu   | `VEIL_0.1.0_amd64.deb`                                    | 4.4 MB  |
-| Fedora · RHEL     | `VEIL-0.1.0-1.x86_64.rpm`                                 | 4.4 MB  |
-| Any Linux distro  | `VEIL_0.1.0_amd64.AppImage`                               | 79 MB   |
+| Windows 10/11     | `VEIL_0.1.1_x64-setup.exe`                                | 3.7 MB  |
+| Windows 10/11     | `VEIL_0.1.1_x64_en-US.msi`                                | 4.4 MB  |
+| Debian · Ubuntu   | `VEIL_0.1.1_amd64.deb`                                    | 4.4 MB  |
+| Fedora · RHEL     | `VEIL-0.1.1-1.x86_64.rpm`                                 | 4.4 MB  |
+| Any Linux distro  | `VEIL_0.1.1_amd64.AppImage`                               | 79 MB   |
 | Arch · Manjaro    | [`packaging/arch/PKGBUILD`](packaging/arch/PKGBUILD)      | source  |
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./VEIL_0.1.0_amd64.deb
+sudo apt install ./VEIL_0.1.1_amd64.deb
 
 # Fedora
-sudo dnf install ./VEIL-0.1.0-1.x86_64.rpm
+sudo dnf install ./VEIL-0.1.1-1.x86_64.rpm
 
 # Any distro
-chmod +x VEIL_0.1.0_amd64.AppImage && ./VEIL_0.1.0_amd64.AppImage
+chmod +x VEIL_0.1.1_amd64.AppImage && ./VEIL_0.1.1_amd64.AppImage
 
 # Arch
 cd packaging/arch && makepkg -si
@@ -134,7 +134,7 @@ network permission of its own.
 
 ## Status
 
-**v0.1.0 — early access.** The core loop is done and stable: send, read, save,
+**v0.1.1 — early access.** The core loop is done and stable: send, read, save,
 reuse. The interface is where the work went.
 
 Windows is packaged and tested. Linux bundles build from the same tag in CI.

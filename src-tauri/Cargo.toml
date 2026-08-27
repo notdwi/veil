@@ -1,6 +1,6 @@
 [package]
 name = "veil"
-version = "0.1.0"
+version = "0.1.1"
 description = "VEIL — a stylish, lightweight API client for developers"
 authors = ["VEIL"]
 edition = "2021"
