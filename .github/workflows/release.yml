@@ -62,7 +62,7 @@ jobs:
             Windows — `.exe` (NSIS) or `.msi`.
             Linux — `.deb` (Debian/Ubuntu), `.rpm` (Fedora), `.AppImage` (any distro).
             Arch — see `packaging/arch/PKGBUILD`.
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
 
       - uses: actions/upload-artifact@v4
