@@ -1,6 +1,7 @@
 import type { Environment, RequestDraft, SendRequestInput } from '@/types'
 import { envMap, resolve } from './interpolate'
 import { methodAllowsBody } from './http-meta'
+import { normalizeUrl } from './url'
 
 export interface BuiltRequest {
   input: SendRequestInput
@@ -15,12 +16,6 @@ function appendQuery(url: string, pairs: [string, string][]): string {
   for (const [k, v] of pairs) sp.append(k, v)
   const qs = sp.toString()
   return qs ? `${base}?${qs}` : base
-}
-
-function normalizeUrl(url: string): string {
-  const trimmed = url.trim()
-  if (!trimmed) return trimmed
-  return /^[a-zA-Z][\w+.-]*:\/\//.test(trimmed) ? trimmed : `https://${trimmed}`
 }
 
 /** Turns a draft plus the active environment into exactly what the transport sends. */

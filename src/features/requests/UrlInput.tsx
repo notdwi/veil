@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { cn } from '@/lib/cn'
 import { extractTokens } from '@/lib/interpolate'
+import { hasScheme, inferScheme } from '@/lib/url'
 import { useUiStore } from '@/stores/useUiStore'
 
 interface UrlInputProps {
@@ -15,6 +16,8 @@ export function UrlInput({ value, onChange, onSubmit, unresolved }: UrlInputProp
   const ref = useRef<HTMLInputElement>(null)
   const signal = useUiStore((s) => s.urlFocusSignal)
   const tokens = extractTokens(value)
+  // Surfaced rather than silently prepended, so the sent URL is never a surprise.
+  const implied = value.trim() && !hasScheme(value) ? `${inferScheme(value)}://` : null
 
   useEffect(() => {
     if (signal > 0) {
@@ -25,21 +28,34 @@ export function UrlInput({ value, onChange, onSubmit, unresolved }: UrlInputProp
 
   return (
     <div className="group relative flex min-w-[200px] flex-1 flex-col justify-center bg-ink-2/70">
-      <input
-        ref={ref}
-        value={value}
-        spellCheck={false}
-        autoComplete="off"
-        placeholder="https://api.example.com/resource"
-        onChange={(e) => onChange(e.target.value)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault()
-            onSubmit()
-          }
-        }}
-        className="h-[40px] w-full bg-transparent px-3.5 font-mono text-[14px] tracking-[-0.01em] text-bone placeholder:text-bone-4"
-      />
+      <div className="flex h-[40px] items-center">
+        {implied && (
+          <span
+            aria-hidden
+            className="shrink-0 pl-3.5 font-mono text-[14px] tracking-[-0.01em] text-bone-4"
+          >
+            {implied}
+          </span>
+        )}
+        <input
+          ref={ref}
+          value={value}
+          spellCheck={false}
+          autoComplete="off"
+          placeholder="api.example.com/resource"
+          onChange={(e) => onChange(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+              e.preventDefault()
+              onSubmit()
+            }
+          }}
+          className={cn(
+            'h-full min-w-0 flex-1 bg-transparent font-mono text-[14px] tracking-[-0.01em] text-bone placeholder:text-bone-4',
+            implied ? 'pr-3.5 pl-0' : 'px-3.5',
+          )}
+        />
+      </div>
       <span aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-hairline" />
       <span
         aria-hidden

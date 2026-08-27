@@ -60,6 +60,8 @@ nothing to configure before you can send something.
 ## What it does
 
 - **Requests** — GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS
+- **No scheme needed** — type `api.example.com/users`; VEIL fills in `https://`,
+  or `http://` when the host is local. It shows you which before sending
 - **Query params & headers** — toggle rows on and off without deleting them
 - **Bodies** — JSON or raw text, with syntax highlighting and formatting
 - **Auth** — basic and bearer, masked by default
