@@ -1,0 +1,50 @@
+# Maintainer: VEIL contributors
+pkgname=veil
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="A stylish, lightweight API client for developers"
+arch=('x86_64')
+url="https://github.com/CHANGEME/veil"
+license=('MIT')
+depends=('webkit2gtk-4.1' 'gtk3' 'hicolor-icon-theme')
+optdepends=(
+  'gnome-keyring: secret storage backend'
+  'kwallet: secret storage backend'
+)
+makedepends=('rust' 'cargo' 'nodejs' 'npm' 'pkgconf')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  npm ci
+
+  # The shell embeds ../dist at compile time, so the frontend goes first.
+  npm run build
+
+  cd src-tauri
+  cargo build --release --locked
+}
+
+check() {
+  cd "$srcdir/$pkgname-$pkgver/src-tauri"
+  cargo test --release --locked --lib
+}
+
+package() {
+  cd "$srcdir/$pkgname-$pkgver"
+
+  install -Dm755 "src-tauri/target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+  install -Dm644 "packaging/linux/$pkgname.desktop" \
+    "$pkgdir/usr/share/applications/$pkgname.desktop"
+
+  install -Dm644 "src-tauri/icons/32x32.png" \
+    "$pkgdir/usr/share/icons/hicolor/32x32/apps/$pkgname.png"
+  install -Dm644 "src-tauri/icons/128x128.png" \
+    "$pkgdir/usr/share/icons/hicolor/128x128/apps/$pkgname.png"
+  install -Dm644 "src-tauri/icons/icon.png" \
+    "$pkgdir/usr/share/icons/hicolor/512x512/apps/$pkgname.png"
+
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}

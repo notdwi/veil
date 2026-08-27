@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=VEIL
+GenericName=API Client
+Comment=A stylish, lightweight API client for developers
+Exec=veil
+Icon=veil
+Terminal=false
+Categories=Development;WebDevelopment;Network;
+Keywords=API;HTTP;REST;client;request;developer;
+StartupWMClass=VEIL
