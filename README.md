@@ -75,27 +75,32 @@ nothing to configure before you can send something.
 
 Download from [**Releases**](../../releases).
 
-| Platform          | File                                                    |
-| ----------------- | ------------------------------------------------------- |
-| Windows 10/11     | `VEIL_0.1.0_x64-setup.exe` · `VEIL_0.1.0_x64_en-US.msi`  |
-| Debian · Ubuntu   | `veil_0.1.0_amd64.deb`                                   |
-| Fedora · RHEL     | `veil-0.1.0-1.x86_64.rpm`                                |
-| Any Linux distro  | `veil_0.1.0_amd64.AppImage`                              |
-| Arch · Manjaro    | [`packaging/arch/PKGBUILD`](packaging/arch/PKGBUILD)     |
+| Platform          | File                                                     | Size    |
+| ----------------- | -------------------------------------------------------- | ------- |
+| Windows 10/11     | `VEIL_0.1.0_x64-setup.exe`                                | 3.7 MB  |
+| Windows 10/11     | `VEIL_0.1.0_x64_en-US.msi`                                | 4.4 MB  |
+| Debian · Ubuntu   | `VEIL_0.1.0_amd64.deb`                                    | 4.4 MB  |
+| Fedora · RHEL     | `VEIL-0.1.0-1.x86_64.rpm`                                 | 4.4 MB  |
+| Any Linux distro  | `VEIL_0.1.0_amd64.AppImage`                               | 79 MB   |
+| Arch · Manjaro    | [`packaging/arch/PKGBUILD`](packaging/arch/PKGBUILD)      | source  |
 
 ```bash
 # Debian / Ubuntu
-sudo apt install ./veil_0.1.0_amd64.deb
+sudo apt install ./VEIL_0.1.0_amd64.deb
 
 # Fedora
-sudo dnf install ./veil-0.1.0-1.x86_64.rpm
+sudo dnf install ./VEIL-0.1.0-1.x86_64.rpm
 
 # Any distro
-chmod +x veil_0.1.0_amd64.AppImage && ./veil_0.1.0_amd64.AppImage
+chmod +x VEIL_0.1.0_amd64.AppImage && ./VEIL_0.1.0_amd64.AppImage
 
 # Arch
 cd packaging/arch && makepkg -si
 ```
+
+All of them install a `veil` binary. The AppImage is the outlier on size because it
+carries its own GTK and WebKit runtime — the native packages link against the ones
+your system already has.
 
 On Linux, secret storage uses the Freedesktop Secret Service, so keep a keyring
 daemon around — `gnome-keyring` or `kwallet`. Without one, secrets stay in memory
