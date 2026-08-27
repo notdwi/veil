@@ -12,6 +12,7 @@ import { useEnvStore } from '@/stores/useEnvStore'
 import { useHistoryStore } from '@/stores/useHistoryStore'
 import { useRequestStore } from '@/stores/useRequestStore'
 import { useUiStore } from '@/stores/useUiStore'
+import { APP_VERSION } from '@/lib/version'
 
 type Dialog = 'collection' | 'environment' | null
 
@@ -88,7 +89,7 @@ export function Sidebar() {
         <span className="type-label text-[8.5px] text-bone-4">
           {collections.length} col · {requestCount} req
         </span>
-        <span className="font-mono text-[8.5px] tracking-wider text-bone-4">v0.1.0</span>
+        <span className="font-mono text-[8.5px] tracking-wider text-bone-4">v{APP_VERSION}</span>
       </footer>
 
       <PromptModal
