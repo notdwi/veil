@@ -23,6 +23,7 @@ interface UiState {
   openSections: Record<SidebarSection, boolean>
   paletteOpen: boolean
   envEditorOpen: boolean
+  historyPanelOpen: boolean
   urlFocusSignal: number
   toasts: Toast[]
 
@@ -36,6 +37,7 @@ interface UiState {
   toggleSection(section: SidebarSection): void
   setPaletteOpen(open: boolean): void
   setEnvEditorOpen(open: boolean): void
+  setHistoryPanelOpen(open: boolean): void
   focusUrl(): void
   toast(message: string, tone?: Toast['tone']): void
   dismissToast(id: string): void
@@ -57,6 +59,7 @@ export const useUiStore = create<UiState>((set, get) => ({
   openSections: { collections: true, history: true, environment: true },
   paletteOpen: false,
   envEditorOpen: false,
+  historyPanelOpen: false,
   urlFocusSignal: 0,
   toasts: [],
 
@@ -79,6 +82,7 @@ export const useUiStore = create<UiState>((set, get) => ({
     set((s) => ({ openSections: { ...s.openSections, [section]: !s.openSections[section] } })),
   setPaletteOpen: (paletteOpen) => set({ paletteOpen }),
   setEnvEditorOpen: (envEditorOpen) => set({ envEditorOpen }),
+  setHistoryPanelOpen: (historyPanelOpen) => set({ historyPanelOpen }),
   focusUrl: () => set((s) => ({ urlFocusSignal: s.urlFocusSignal + 1 })),
 
   toast: (message, tone = 'info') => {

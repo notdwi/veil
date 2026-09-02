@@ -81,6 +81,13 @@ export function useCommands(): Command[] {
         run: () => ui.setEnvEditorOpen(true),
       },
       {
+        id: 'workspace.history',
+        label: 'Open history',
+        group: 'Workspace',
+        keys: 'Ctrl H',
+        run: () => ui.setHistoryPanelOpen(true),
+      },
+      {
         id: 'workspace.clear-history',
         label: 'Clear history',
         group: 'Workspace',
@@ -94,9 +101,8 @@ export function useCommands(): Command[] {
       },
       {
         id: 'view.history',
-        label: 'Toggle history',
+        label: 'Toggle history sidebar section',
         group: 'View',
-        keys: 'Ctrl H',
         run: () => ui.toggleSection('history'),
       },
       {

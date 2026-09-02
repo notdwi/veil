@@ -3,34 +3,31 @@ import { MethodBadge } from '@/components/ui/MethodBadge'
 import { SlantRow } from '@/components/ui/SlantRow'
 import { statusColor } from '@/lib/http-meta'
 import { formatClock } from '@/lib/format'
-import type { HistoryEntry } from '@/types'
+import { shortPath, type HistoryRun } from '@/lib/history'
 
 interface HistoryRowProps {
-  entry: HistoryEntry
+  run: HistoryRun
   onOpen(): void
 }
 
-function shortPath(url: string): string {
-  try {
-    const u = new URL(url)
-    return `${u.pathname}${u.search}` || u.hostname
-  } catch {
-    return url.replace(/^https?:\/\//, '')
-  }
-}
+/** Sidebar row. A repeated run shows a count instead of stacking duplicates. */
+export function HistoryRow({ run, onOpen }: HistoryRowProps) {
+  const { entry, count } = run
+  const color = entry.status == null ? 'var(--color-crimson-hot)' : statusColor(entry.status)
 
-export function HistoryRow({ entry, onOpen }: HistoryRowProps) {
   return (
     <SlantRow
       onClick={onOpen}
-      title={`${entry.method} ${entry.url} · ${formatClock(entry.createdAt)}`}
+      title={`${entry.method} ${entry.url} · ${formatClock(entry.createdAt)}${count > 1 ? ` · ${count} runs` : ''}`}
       leading={<MethodBadge method={entry.method} size="xs" />}
       trailing={
-        <span
-          className={cn('font-mono text-[9.5px] font-bold tabular-nums')}
-          style={{ color: entry.status == null ? 'var(--color-crimson-hot)' : statusColor(entry.status) }}
-        >
-          {entry.status ?? 'ERR'}
+        <span className="flex items-center gap-1.5">
+          {count > 1 && (
+            <span className="font-mono text-[9px] font-bold text-bone-4">&times;{count}</span>
+          )}
+          <span className={cn('font-mono text-[9.5px] font-bold tabular-nums')} style={{ color }}>
+            {entry.status ?? 'ERR'}
+          </span>
         </span>
       }
     >

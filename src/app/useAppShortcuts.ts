@@ -16,7 +16,7 @@ export function useAppShortcuts(): void {
       'mod+s': () => void save(),
       'mod+p': () => ui.setPaletteOpen(!ui.paletteOpen),
       'mod+l': () => ui.focusUrl(),
-      'mod+h': () => ui.toggleSection('history'),
+      'mod+h': () => ui.setHistoryPanelOpen(!ui.historyPanelOpen),
       'mod+n': () => reset(),
     }),
     [execute, save, reset, ui],

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Eraser, FilePlus2, FolderPlus, Plus } from 'lucide-react'
+import { FilePlus2, FolderPlus, ListFilter, Plus } from 'lucide-react'
 import { Halftone } from '@/components/deco/Halftone'
 import { IconButton } from '@/components/ui/IconButton'
 import { PromptModal } from '@/components/ui/PromptModal'
@@ -18,11 +18,11 @@ type Dialog = 'collection' | 'environment' | null
 
 export function Sidebar() {
   const { openSections, toggleSection } = useUiStore()
+  const setHistoryPanelOpen = useUiStore((s) => s.setHistoryPanelOpen)
   const collections = useCollectionsStore((s) => s.collections)
   const createCollection = useCollectionsStore((s) => s.createCollection)
   const requestCount = useCollectionsStore((s) => s.requests.length)
   const historyCount = useHistoryStore((s) => s.entries.length)
-  const clearHistory = useHistoryStore((s) => s.clear)
   const environments = useEnvStore((s) => s.environments)
   const createEnvironment = useEnvStore((s) => s.create)
   const newRequest = useRequestStore((s) => s.reset)
@@ -60,8 +60,8 @@ export function Sidebar() {
           onToggle={() => toggleSection('history')}
           count={historyCount}
           actions={
-            <IconButton label="Clear history" tone="danger" onClick={() => void clearHistory()}>
-              <Eraser size={12} strokeWidth={2.2} />
+            <IconButton label="Open history" onClick={() => setHistoryPanelOpen(true)}>
+              <ListFilter size={12} strokeWidth={2.2} />
             </IconButton>
           }
         />

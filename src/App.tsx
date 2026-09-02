@@ -2,6 +2,7 @@ import { Splash } from '@/components/brand/Splash'
 import { Toasts } from '@/components/ui/Toasts'
 import { CommandPalette } from '@/features/command-palette/CommandPalette'
 import { EnvEditor } from '@/features/environments/EnvEditor'
+import { HistoryPanel } from '@/features/history/HistoryPanel'
 import { SettingsModal } from '@/features/settings/SettingsModal'
 import { AppShell } from '@/layouts/AppShell'
 import { useAppShortcuts } from '@/app/useAppShortcuts'
@@ -18,6 +19,7 @@ export default function App() {
       <AppShell />
       <CommandPalette />
       <EnvEditor />
+      <HistoryPanel />
       <SettingsModal />
       <Toasts />
     </>
