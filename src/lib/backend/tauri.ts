@@ -24,6 +24,7 @@ export const tauriBackend: Backend = {
 
   listHistory: (limit) => invoke<HistoryEntry[]>('list_history', { limit }),
   pushHistory: (entry) => invoke<void>('push_history', { entry }),
+  deleteHistoryEntries: (ids) => invoke<void>('delete_history_entries', { ids }),
   clearHistory: () => invoke<void>('clear_history'),
 
   listEnvironments: () => invoke<Environment[]>('list_environments'),

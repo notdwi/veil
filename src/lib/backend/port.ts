@@ -23,6 +23,7 @@ export interface Backend {
 
   listHistory(limit: number): Promise<HistoryEntry[]>
   pushHistory(entry: HistoryEntry): Promise<void>
+  deleteHistoryEntries(ids: string[]): Promise<void>
   clearHistory(): Promise<void>
 
   listEnvironments(): Promise<Environment[]>

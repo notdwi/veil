@@ -97,6 +97,13 @@ export const webBackend: Backend = {
     const rows = [entry, ...read<HistoryEntry[]>('history', [])].slice(0, 200)
     write('history', rows)
   },
+  async deleteHistoryEntries(ids) {
+    const drop = new Set(ids)
+    write(
+      'history',
+      read<HistoryEntry[]>('history', []).filter((h) => !drop.has(h.id)),
+    )
+  },
   async clearHistory() {
     write('history', [])
   },

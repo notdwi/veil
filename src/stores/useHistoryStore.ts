@@ -9,6 +9,7 @@ interface HistoryState {
   hydrated: boolean
   hydrate(): Promise<void>
   push(entry: HistoryEntry): Promise<void>
+  remove(ids: string[]): Promise<void>
   clear(): Promise<void>
 }
 
@@ -23,6 +24,12 @@ export const useHistoryStore = create<HistoryState>((set) => ({
   async push(entry) {
     set((s) => ({ entries: [entry, ...s.entries].slice(0, LIMIT) }))
     await backend.pushHistory(entry)
+  },
+
+  async remove(ids) {
+    const drop = new Set(ids)
+    set((s) => ({ entries: s.entries.filter((e) => !drop.has(e.id)) }))
+    await backend.deleteHistoryEntries(ids)
   },
 
   async clear() {

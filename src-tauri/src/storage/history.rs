@@ -65,6 +65,19 @@ pub fn push(conn: &Connection, entry: &HistoryEntry) -> AppResult<()> {
     Ok(())
 }
 
+/// Removes a set of rows in one transaction so a collapsed run deletes atomically.
+pub fn delete_many(conn: &mut Connection, ids: &[String]) -> AppResult<()> {
+    let tx = conn.transaction()?;
+    {
+        let mut stmt = tx.prepare("DELETE FROM history WHERE id = ?1")?;
+        for id in ids {
+            stmt.execute(params![id])?;
+        }
+    }
+    tx.commit()?;
+    Ok(())
+}
+
 pub fn clear(conn: &Connection) -> AppResult<()> {
     conn.execute("DELETE FROM history", [])?;
     Ok(())

@@ -30,6 +30,7 @@ pub fn run() {
             commands::collections::delete_request,
             commands::history::list_history,
             commands::history::push_history,
+            commands::history::delete_history_entries,
             commands::history::clear_history,
             commands::environments::list_environments,
             commands::environments::save_environment,

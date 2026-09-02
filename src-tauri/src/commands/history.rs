@@ -16,6 +16,11 @@ pub fn push_history(state: State<'_, AppState>, entry: HistoryEntry) -> AppResul
 }
 
 #[tauri::command]
+pub fn delete_history_entries(state: State<'_, AppState>, ids: Vec<String>) -> AppResult<()> {
+    state.with_db_mut(|conn| history::delete_many(conn, &ids))
+}
+
+#[tauri::command]
 pub fn clear_history(state: State<'_, AppState>) -> AppResult<()> {
     state.with_db(history::clear)
 }
